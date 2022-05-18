@@ -56,6 +56,7 @@ class _homeScreenState extends State<homeScreen> {
 
   winnerPopUp(var winner){
     return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context)=> AlertDialog(
         title: Text('$winner WINS 🎉',textAlign: TextAlign.center,),
@@ -97,6 +98,7 @@ class _homeScreenState extends State<homeScreen> {
 
   tiePopUp(){
     return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context)=> AlertDialog(
         title: Text('It\'s a tie 🙂',textAlign: TextAlign.center,),
