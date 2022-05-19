@@ -31,6 +31,8 @@ class _homeScreenState extends State<homeScreen> {
 
   var turn = "O";
 
+  var gameOver = 0;
+
   var boxText0 = "";
   var boxText1 = "";
   var boxText2 = "";
@@ -65,6 +67,8 @@ class _homeScreenState extends State<homeScreen> {
             onPressed: (){
               setState(() {
                 turn = "O";
+
+                gameOver = 0;
 
                 boxText0 = "";
                 boxText1 = "";
@@ -108,6 +112,8 @@ class _homeScreenState extends State<homeScreen> {
               setState(() {
                 turn = "O";
 
+                gameOver = 0;
+
                 boxText0 = "";
                 boxText1 = "";
                 boxText2 = "";
@@ -140,27 +146,29 @@ class _homeScreenState extends State<homeScreen> {
 
   tieChecker(){
     if(isEmpty0==false &&  isEmpty1==false &&  isEmpty2==false &&  isEmpty3==false &&  isEmpty4==false &&  isEmpty5==false &&  isEmpty6==false &&  isEmpty7==false &&  isEmpty8==false  ){
-      tiePopUp();
+      if(gameOver == 1){return;}
+      else{tiePopUp();}
     }
   }
   checkWinner(){
-    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'O'){winnerPopUp(playerName1);}
-    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'O'){winnerPopUp(playerName1);}
-    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'O'){winnerPopUp(playerName1);}
-    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'O'){winnerPopUp(playerName1);}
-    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'O'){winnerPopUp(playerName1);}
-    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'O'){winnerPopUp(playerName1);}
-    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'O'){winnerPopUp(playerName1);}
-    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'O'){winnerPopUp(playerName1);}
+    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
 
-    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'X'){winnerPopUp(playerName2);}
-    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'X'){winnerPopUp(playerName2);}
-    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'X'){winnerPopUp(playerName2);}
-    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'X'){winnerPopUp(playerName2);}
-    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'X'){winnerPopUp(playerName2);}
-    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'X'){winnerPopUp(playerName2);}
-    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'X'){winnerPopUp(playerName2);}
-    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'X'){winnerPopUp(playerName2);}
+    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+
   }
 
   TextEditingController ControllerOne = TextEditingController();
@@ -246,6 +254,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty0 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -259,6 +268,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty1 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -272,6 +282,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty2 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -288,6 +299,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty3 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -301,6 +313,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty4 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -314,6 +327,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty5 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -330,6 +344,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty6 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -343,6 +358,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty7 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -356,6 +372,7 @@ class _homeScreenState extends State<homeScreen> {
                         isEmpty8 = false;
                       }
                     });
+                    print(gameOver);
                     checkWinner();
                     tieChecker();
                   },
@@ -380,6 +397,8 @@ class _homeScreenState extends State<homeScreen> {
                 onPressed: (){
                   setState(() {
                     turn = "O";
+
+                    gameOver = 0;
 
                     boxText0 = "";
                     boxText1 = "";
