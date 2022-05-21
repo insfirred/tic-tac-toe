@@ -56,48 +56,11 @@ class _homeScreenState extends State<homeScreen> {
   var playerName1 = "Player 1";
   var playerName2 = "Player 2";
 
-  winnerPopUp(var winner){
-    return showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (context)=> AlertDialog(
-        title: Text('$winner WINS 🎉',textAlign: TextAlign.center,),
-        actions: [
-          ElevatedButton(
-            onPressed: (){
-              setState(() {
-                turn = "O";
-
-                gameOver = 0;
-
-                boxText0 = "";
-                boxText1 = "";
-                boxText2 = "";
-                boxText3 = "";
-                boxText4 = "";
-                boxText5 = "";
-                boxText6 = "";
-                boxText7 = "";
-                boxText8 = "";
-
-                isEmpty0 = true;
-                isEmpty1 = true;
-                isEmpty2 = true;
-                isEmpty3 = true;
-                isEmpty4 = true;
-                isEmpty5 = true;
-                isEmpty6 = true;
-                isEmpty7 = true;
-                isEmpty8 = true;
-                    
-              });
-              Navigator.of(context).pop();
-            },
-            child: Text('Play Again')
-          )
-        ],
-      )
-    );
+  tieChecker(){
+    if(isEmpty0==false &&  isEmpty1==false &&  isEmpty2==false &&  isEmpty3==false &&  isEmpty4==false &&  isEmpty5==false &&  isEmpty6==false &&  isEmpty7==false &&  isEmpty8==false  ){
+      if(gameOver == 1){return;}
+      else{tiePopUp();}
+    }
   }
 
   tiePopUp(){
@@ -144,31 +107,69 @@ class _homeScreenState extends State<homeScreen> {
     );
   }
 
-  tieChecker(){
-    if(isEmpty0==false &&  isEmpty1==false &&  isEmpty2==false &&  isEmpty3==false &&  isEmpty4==false &&  isEmpty5==false &&  isEmpty6==false &&  isEmpty7==false &&  isEmpty8==false  ){
-      if(gameOver == 1){return;}
-      else{tiePopUp();}
-    }
-  }
+
   checkWinner(){
-    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
-    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'O'){winnerPopUp(playerName1); gameOver = 1;}
+    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
+    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'O'){if(gameOver==1){return;}else{winnerPopUp(playerName1);} gameOver = 1;}
 
-    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
-    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'X'){winnerPopUp(playerName2); gameOver = 1;}
+    if(boxText0 == boxText1 && boxText1 == boxText2  &&  boxText0 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText3 == boxText4 && boxText4 == boxText5  &&  boxText3 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText6 == boxText7 && boxText7 == boxText8  &&  boxText6 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText0 == boxText3 && boxText3 == boxText6  &&  boxText0 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText1 == boxText4 && boxText4 == boxText7  &&  boxText1 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText2 == boxText5 && boxText5 == boxText8  &&  boxText2 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText0 == boxText4 && boxText4 == boxText8  &&  boxText0 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+    if(boxText2 == boxText4 && boxText4 == boxText6  &&  boxText2 == 'X'){if(gameOver==1){return;}else{winnerPopUp(playerName2);} gameOver = 1;}
+  }
 
+  winnerPopUp(var winner){
+    return showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context)=> AlertDialog(
+        title: Text('$winner WINS 🎉',textAlign: TextAlign.center,),
+        actions: [
+          ElevatedButton(
+            onPressed: (){
+              setState(() {
+                turn = "O";
+
+                gameOver = 0;
+
+                boxText0 = "";
+                boxText1 = "";
+                boxText2 = "";
+                boxText3 = "";
+                boxText4 = "";
+                boxText5 = "";
+                boxText6 = "";
+                boxText7 = "";
+                boxText8 = "";
+
+                isEmpty0 = true;
+                isEmpty1 = true;
+                isEmpty2 = true;
+                isEmpty3 = true;
+                isEmpty4 = true;
+                isEmpty5 = true;
+                isEmpty6 = true;
+                isEmpty7 = true;
+                isEmpty8 = true;
+                    
+              });
+              Navigator.of(context).pop();
+            },
+            child: Text('Play Again')
+          )
+        ],
+      )
+    );
   }
 
   TextEditingController ControllerOne = TextEditingController();
