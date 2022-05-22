@@ -96,6 +96,8 @@ class _homeScreenState extends State<homeScreen> {
                 isEmpty6 = true;
                 isEmpty7 = true;
                 isEmpty8 = true;
+
+                swapPlayers();
                     
               });
               Navigator.of(context).pop();
@@ -161,6 +163,8 @@ class _homeScreenState extends State<homeScreen> {
                 isEmpty6 = true;
                 isEmpty7 = true;
                 isEmpty8 = true;
+
+                swapPlayers();
                     
               });
               Navigator.of(context).pop();
@@ -230,17 +234,48 @@ class _homeScreenState extends State<homeScreen> {
     );
   }
 
+  swapPlayers(){
+    setState(() {
+      var temp = playerName1;
+      playerName1 = playerName2;
+      playerName2 = temp;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.blueGrey.shade900,
-        body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
 
-          Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-            Text(playerName1 ,style: TextStyle(color: (turn=="O")?Colors.white:Colors.grey.shade700, fontSize: (turn=='O')?40:20),),
-            const SizedBox(width: 100,),
-            Text(playerName2 ,style: TextStyle(color: (turn=="O")?Colors.grey.shade700:Colors.white, fontSize: (turn=='O')?20:40),),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
+            SizedBox(
+              width: 150,
+              child: Column(
+                children: [
+                  Text('O' ,style: TextStyle(color: (turn=="O")?Colors.white:Colors.grey.shade700, fontSize: (turn=='O')?40:20),),
+                  Text(playerName1 ,style: TextStyle(color: (turn=="O")?Colors.white:Colors.grey.shade700, fontSize: (turn=='O')?40:20),),
+                ],
+              ),
+            ),
+
+            IconButton(
+              onPressed: ()=>swapPlayers(), 
+              icon: Icon(Icons.change_circle_outlined),
+              color: Colors.white,
+              iconSize: 50,
+            ),
+
+            SizedBox(
+              width: 150,
+              child: Column(
+                children: [
+                  Text('X' ,style: TextStyle(color: (turn=="O")?Colors.grey.shade700:Colors.white, fontSize: (turn=='O')?20:40),),
+                  Text(playerName2 ,style: TextStyle(color: (turn=="O")?Colors.grey.shade700:Colors.white, fontSize: (turn=='O')?20:40),),
+                ],
+              ),
+            ),
           ],),
 
           Column(
@@ -431,7 +466,15 @@ class _homeScreenState extends State<homeScreen> {
                 )
               ),
             ],
-          )
+          ),
+
+          Text(
+            'Build and Designed by Kalash with Love 💜',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 17
+            ),
+          ),
           
         ],),
       ),
